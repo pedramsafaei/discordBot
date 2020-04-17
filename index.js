@@ -66,6 +66,7 @@ client.on("message", (message) => {
       let guildMemeber = message.mentions.members.first();
       messageString = message.content.split(guildMemeber.id).pop();
       guildMemeber.send(`${message.member.user} says ` + messageString);
+      message.delete();
     }
   }
 });
