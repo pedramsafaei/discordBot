@@ -6,7 +6,7 @@ var GphApiClient = require("giphy-js-sdk-core");
 giphy = GphApiClient(giphyToken);
 
 client.once("ready", () => {
-  console.log("Ready!");
+  console.log("Bot running successfully!");
 });
 
 client.on("message", (message) => {
@@ -42,9 +42,8 @@ client.on("message", (message) => {
   //FIND GIFS
   if (message.member.hasPermission(["SEND_MESSAGES"])) {
     if (message.content.startsWith(`${prefix}gif`)) {
-      //let member = message.mentions.members.first();
       var actualgif = message.content.split("gif").pop();
-      actualgif = actualgif.replace(/\s/g, "");
+      actualgif = actualgif.trim();
       giphy
         .search("gifs", { q: actualgif })
         .then((response) => {
