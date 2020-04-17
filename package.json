@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/pedramsafaei/discordBot#readme",
   "dependencies": {
-    "discord.js": "^12.1.1"
+    "discord.js": "^12.1.1",
+    "giphy-js-sdk-core": "^1.0.6"
   }
 }
