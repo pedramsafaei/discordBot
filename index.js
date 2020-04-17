@@ -63,10 +63,12 @@ client.on("message", (message) => {
   //SEND DM
   if (message.content.startsWith(`${prefix}dm`)) {
     if (message.member.hasPermission(["SEND_MESSAGES"])) {
-      let guildMemeber = message.mentions.members.first();
-      messageString = message.content.split(guildMemeber.id).pop();
-      guildMemeber.send(`${message.member.user} says ` + messageString);
-      message.delete();
+      try {
+        let guildMemeber = message.mentions.members.first();
+        messageString = message.content.split(guildMemeber.id).pop();
+        guildMemeber.send(`${message.member.user} says ` + messageString);
+        message.delete();
+      } catch (err) {}
     }
   }
 });
