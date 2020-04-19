@@ -11,8 +11,8 @@ client.once("ready", () => {
 
 client.on("message", (message) => {
   //KICK MEMBERS
-  if (message.member.hasPermission(["KICK_MEMBERS", "BAN_MEMBERS"])) {
-    if (message.content.startsWith(`${prefix}kick`)) {
+  if (message.content.startsWith(`${prefix}kick`)) {
+    if (message.member.hasPermission(["KICK_MEMBERS", "BAN_MEMBERS"])) {
       let member = message.mentions.members.first();
       member.kick().then((member) => {
         giphy
@@ -40,8 +40,8 @@ client.on("message", (message) => {
     }
   }
   //FIND GIFS
-  if (message.member.hasPermission(["SEND_MESSAGES"])) {
-    if (message.content.startsWith(`${prefix}gif`)) {
+  if (message.content.startsWith(`${prefix}gif`)) {
+    if (message.member.hasPermission(["SEND_MESSAGES"])) {
       var actualgif = message.content.split("gif").pop();
       actualgif = actualgif.trim();
       giphy
@@ -58,6 +58,17 @@ client.on("message", (message) => {
         .catch(() => {
           message.channel.send("Can't find this gif you FUCKER!!!");
         });
+    }
+  }
+  //SEND DM
+  if (message.content.startsWith(`${prefix}dm`)) {
+    if (message.member.hasPermission(["SEND_MESSAGES"])) {
+      try {
+        let guildMemeber = message.mentions.members.first();
+        messageString = message.content.split(guildMemeber.id).pop();
+        guildMemeber.send(`${message.member.user} says ` + messageString);
+        message.delete();
+      } catch (err) {}
     }
   }
 });
