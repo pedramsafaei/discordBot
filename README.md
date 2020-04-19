@@ -6,7 +6,7 @@ This discordBot is being developed for a NoChill bot meaning the bot's personali
 
 ### Commands start with < **!** >
 
-#### Existing commands:
+#### Existing commands
 
 ```text
 kick : kicks a member out of the server
