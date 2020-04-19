@@ -1,9 +1,8 @@
 const discord = require("discord.js");
 const client = new discord.Client();
-const { prefix, token, giphyToken } = require("./config.json");
 
 var GphApiClient = require("giphy-js-sdk-core");
-giphy = GphApiClient(giphyToken);
+giphy = GphApiClient(process.env.giphyToken);
 
 client.once("ready", () => {
   console.log("Bot running successfully!");
@@ -11,7 +10,7 @@ client.once("ready", () => {
 
 client.on("message", (message) => {
   //KICK MEMBERS
-  if (message.content.startsWith(`${prefix}kick`)) {
+  if (message.content.startsWith(`${process.env.prefix}kick`)) {
     if (message.member.hasPermission(["KICK_MEMBERS", "BAN_MEMBERS"])) {
       let member = message.mentions.members.first();
       member.kick().then((member) => {
@@ -40,7 +39,7 @@ client.on("message", (message) => {
     }
   }
   //FIND GIFS
-  if (message.content.startsWith(`${prefix}gif`)) {
+  if (message.content.startsWith(`${process.env.prefix}gif`)) {
     if (message.member.hasPermission(["SEND_MESSAGES"])) {
       var actualgif = message.content.split("gif").pop();
       actualgif = actualgif.trim();
@@ -61,7 +60,7 @@ client.on("message", (message) => {
     }
   }
   //SEND DM
-  if (message.content.startsWith(`${prefix}dm`)) {
+  if (message.content.startsWith(`${process.env.prefix}dm`)) {
     if (message.member.hasPermission(["SEND_MESSAGES"])) {
       try {
         let guildMemeber = message.mentions.members.first();
@@ -72,4 +71,4 @@ client.on("message", (message) => {
     }
   }
 });
-client.login(token);
+client.login(process.env.token);
