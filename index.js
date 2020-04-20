@@ -71,7 +71,7 @@ client.on("message", (message) => {
     }
   }
   //get name of the game
-  if (message.content.startsWith(`${prefix}game`)) {
+  if (message.content.startsWith(`${process.env.prefix}game`)) {
     if (message.member.hasPermission(["SEND_MESSAGES"])) {
       try {
         let guildMemeber = message.mentions.members.first();
