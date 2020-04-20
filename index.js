@@ -71,5 +71,18 @@ client.on("message", (message) => {
       } catch (err) {}
     }
   }
+  if (message.content.startsWith(`${prefix}game`)) {
+    if (message.member.hasPermission(["SEND_MESSAGES"])) {
+      try {
+        let guildMemeber = message.mentions.members.first();
+        var game = guildMemeber.presence.activities;
+        if (game.toString() == "") {
+          message.channel.send(`${guildMemeber} is not playing`);
+        } else {
+          message.channel.send(`${guildMemeber} is playing ${game.toString()}`);
+        }
+      } catch (err) {}
+    }
+  }
 });
 client.login(token);
