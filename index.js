@@ -9,6 +9,14 @@ client.once("ready", () => {
   console.log("Bot running successfully!");
 });
 
+client.on("guildMemberAdd", (member) => {
+  const channel = member.guild.channels.cache.find(
+    (ch) => ch.name === "member-log"
+  );
+  if (!channel) return;
+  channel.send(`Welcome to the server, ${member}`);
+});
+
 client.on("message", (message) => {
   //KICK MEMBERS
   if (message.content.startsWith(`${process.env.prefix}kick`)) {
@@ -71,6 +79,7 @@ client.on("message", (message) => {
       } catch (err) {}
     }
   }
+  //SHOW WHAT GAME THEY ARE PLAYING
   if (message.content.startsWith(`${process.env.prefix}game`)) {
     if (message.member.hasPermission(["SEND_MESSAGES"])) {
       try {
@@ -84,5 +93,16 @@ client.on("message", (message) => {
       } catch (err) {}
     }
   }
+  //SHOW USERS AVATAR
+  if (message.content.startsWith(`${process.env.prefix}avatar`)) {
+    if (message.member.hasPermission(["SEND_MESSAGES"])) {
+      let user = message.mentions.users.first() || message.author;
+      console.log(user);
+      message.channel.send(
+        `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp`
+      );
+    }
+  }
 });
+
 client.login(process.env.token);
