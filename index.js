@@ -2,6 +2,7 @@ const discord = require("discord.js");
 const client = new discord.Client();
 require("dotenv").config();
 
+
 var GphApiClient = require("giphy-js-sdk-core");
 giphy = GphApiClient(process.env.giphyToken);
 
