@@ -1,7 +1,9 @@
 const discord = require("discord.js");
 const client = new discord.Client();
-require("dotenv").config();
+const fetch = require("node-fetch");
+const querystring = require("querystring");
 
+require("dotenv").config();
 
 var GphApiClient = require("giphy-js-sdk-core");
 giphy = GphApiClient(process.env.giphyToken);
@@ -98,10 +100,22 @@ client.on("message", (message) => {
   if (message.content.startsWith(`${process.env.prefix}avatar`)) {
     if (message.member.hasPermission(["SEND_MESSAGES"])) {
       let user = message.mentions.users.first() || message.author;
-      console.log(user);
       message.channel.send(
         `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp`
       );
+    }
+  }
+  async function search(query) {
+    const { list } = await fetch(
+      `https://api.urbandictionary.com/v0/define?term=${query}`
+    ).then((response) => response.json());
+    message.channel.send(list[0].definition);
+  }
+  //SEARCH ON URBAN DISCTIONARY
+  if (message.content.startsWith(`${process.env.prefix}urban`)) {
+    if (message.member.hasPermission(["SEND_MESSAGES"])) {
+      const query = message.content.split("urban ").pop();
+      search(query);
     }
   }
 });
