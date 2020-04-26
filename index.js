@@ -96,6 +96,14 @@ client.on("message", (message) => {
       } catch (err) {}
     }
   }
+  //Re-education camp (user request!)
+  if (message.content.startsWith(`${process.env.prefix}re-education`)) {
+    if (message.member.hasPermission(["SEND_MESSAGES"])) {
+      try {
+        message.channel.send("https://www.youtube.com/watch?v=U06jlgpMtQs");
+      } catch (err) {}
+    }
+  }
   //SHOW USERS AVATAR
   if (message.content.startsWith(`${process.env.prefix}avatar`)) {
     if (message.member.hasPermission(["SEND_MESSAGES"])) {
