@@ -1,5 +1,5 @@
-const discord = require("discord.js");
-const client = new discord.Client();
+const { Client, MessageAttachment } = require("discord.js");
+const client = new Client();
 const fetch = require("node-fetch");
 const querystring = require("querystring");
 
