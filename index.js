@@ -113,6 +113,15 @@ client.on("message", (message) => {
       );
     }
   }
+  //SHOW The Finger!
+  if (message.content.startsWith(`${process.env.prefix}avatar`)) {
+    if (message.member.hasPermission(["SEND_MESSAGES"])) {
+      const attachment = new MessageAttachment(
+        "https://i.imgur.com/biT8Si9.jpg"
+      );
+      message.channel.send(attachment);
+    }
+  }
   async function search(query) {
     const { list } = await fetch(
       `https://api.urbandictionary.com/v0/define?term=${query}`
