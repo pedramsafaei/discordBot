@@ -1,5 +1,11 @@
 # discordBot
 
+⚠️⚠️WARNING ⚠️⚠️
+
+❗ Explicit Content
+
+❗ Swear Words
+
 This discordBot is being developed for a NoChill bot meaning the bot's personality is mean and the bot should be using a lot of blasphemous or obscene language, so beware!!
 
 ## Commands
