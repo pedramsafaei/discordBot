@@ -1,3 +1,5 @@
+Development will continue on another repo (https://github.com/ChillChillin/NoChill) 
+
 # discordBot
 
 ⚠️⚠️WARNING ⚠️⚠️
